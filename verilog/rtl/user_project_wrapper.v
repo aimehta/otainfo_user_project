@@ -13,6 +13,8 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
+// `include "/home/farhad/Projects/rv32i_tapeout/src/wrapped_ibnalhaytham.v"
+
 `default_nettype none
 /*
  *-------------------------------------------------------------
@@ -82,41 +84,139 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
+/* wrapped_ibnalhaytham wrapped_ibnalhaytham_1 ( */
+/*     `ifdef USE_POWER_PINS */
+/*         vccd1,	// User area 1 1.8V supply */
+/*         vssd1,	// User area 1 digital ground */
+/*     `endif */
+/*     wb_clk_i, */
+/*     la_data_in[63:32],                // from CPU to your project */
+/*     la_data_out[63:32],               // from your project to CPU */
+/*     la_oenb[63:32], */
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+/*     io_in, */
+/*     io_out, */
+/*     io_oeb, */
 
-    // MGMT SoC Wishbone Slave
+/*     user_clock2, */
 
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
+/*     la_data_in[1] */
+/* ); */
 
-    // Logic Analyzer
 
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
 
-    // IO Pads
 
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
 
-    // IRQ
-    .irq(user_irq)
+
+
+projtes projtes1(
+    `ifdef USE_POWER_PINS
+        vccd1,	// User area 1 1.8V supply
+        vssd1,	// User area 1 digital ground
+    `endif
+    wb_clk_i,
+    la_data_in,                // from CPU to your project
+    la_data_out,               // from your project to CPU
+    la_oenb,
+
+    io_in,
+    io_out,
+    io_oeb,
+
+    user_clock2
 );
+
+
+
+
+
+
+
+
+
+
+
+
+  /* // split remaining 96 logic analizer wires into 3 chunks */                                                                                              
+  /*   wire [31: 0] la1_data_in, la1_data_out, la1_oenb; */                                                                                                     
+  /*   assign la1_data_in = la_data_in[63:32]; */                                                                                                               
+  /*   assign la_data_out[63:32] = la1_data_out; */                                                                                                             
+  /*   assign la1_oenb = la_oenb[63:32]; */                                                                                                                     
+                                                                                                                                                          
+  /*   wire [31: 0] la2_data_in, la2_data_out, la2_oenb; */                                                                                                     
+  /*   assign la2_data_in = la_data_in[95:64]; */                                                                                                               
+  /*   assign la_data_out[95:64] = la2_data_out; */                                                                                                             
+  /*   assign la2_oenb = la_oenb[95:64]; */                                                                                                                     
+                                                                                                                                                          
+  /*   wire [31: 0] la3_data_in, la3_data_out, la3_oenb; */                                                                                                     
+  /*   assign la3_data_in = la_data_in[127:96]; */                                                                                                              
+  /*   assign la_data_out[127:96] = la3_data_out; */                                                                                                            
+  /*   assign la3_oenb = la_oenb[127:96]; */
+
+
+/* // generate active wires */
+  /*   wire [31: 0] active; */
+  /*   assign active = la_data_in[31:0]; */
+
+
+  /*  wrapped_ibnalhaytham wrapped_ibnalhaytham_1( */                                                                                                          
+  /*       `ifdef USE_POWER_PINS */                                                                                                                             
+  /*       .vccd1 (vccd1), */                                                                                                                                   
+  /*       .vssd1 (vssd1), */                                                                                                                                   
+  /*       `endif */                                                                                                                                            
+  /*       .wb_clk_i (wb_clk_i), */                                                                                                                             
+  /*       .active (active[1]), */                                                                                                                              
+  /*       .la1_data_in (la1_data_in[31:0]), */                                                                                                                 
+  /*       .la1_data_out (la1_data_out[31:0]), */                                                                                                               
+  /*       .la1_oenb (la1_oenb[31:0]), */                                                                                                                       
+  /*       .io_in (io_in[37:0]), */                                                                                                                             
+  /*       .io_out (io_out[37:0]), */                                                                                                                           
+  /*       .io_oeb (io_oeb[37:0]), */                                                                                                                           
+  /*       .user_clock2 (user_clock2) */                                                                                                                        
+  /*   ); */                                    
+
+
+
+
+
+
+// user_proj_example mprj (
+// `ifdef USE_POWER_PINS
+// 	.vccd1(vccd1),	// User area 1 1.8V power
+// 	.vssd1(vssd1),	// User area 1 digital ground
+// `endif
+
+//     .wb_clk_i(wb_clk_i),
+//     .wb_rst_i(wb_rst_i),
+
+//     // MGMT SoC Wishbone Slave
+
+//     .wbs_cyc_i(wbs_cyc_i),
+//     .wbs_stb_i(wbs_stb_i),
+//     .wbs_we_i(wbs_we_i),
+//     .wbs_sel_i(wbs_sel_i),
+//     .wbs_adr_i(wbs_adr_i),
+//     .wbs_dat_i(wbs_dat_i),
+//     .wbs_ack_o(wbs_ack_o),
+//     .wbs_dat_o(wbs_dat_o),
+
+//     // Logic Analyzer
+
+//     .la_data_in(la_data_in),
+//     .la_data_out(la_data_out),
+//     .la_oenb (la_oenb),
+
+//     // IO Pads
+
+//     .io_in (io_in),
+//     .io_out(io_out),
+//     .io_oeb(io_oeb),
+
+//     // IRQ
+//     .irq(user_irq)
+// );
+
+
 
 endmodule	// user_project_wrapper
 

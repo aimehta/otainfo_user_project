@@ -5,8 +5,17 @@
 | :exclamation: Important Note            |
 |-----------------------------------------|
 
-## Please fill in your project documentation in this README.md file 
+# Test project containing 2 different designs:
 
-Refer to [README](docs/source/quickstart.rst) for a quick start of how to use caravel_user_project
+please refer to the documentation of the following designs:
 
-Refer to [README](docs/source/index.rst) for this sample project documentation. 
+https://github.com/sfmth/ibnalhaytham
+
+https://github.com/sfmth/tinytapeout-tinycordic
+
+# GDS
+
+<p align="center" float="center">
+  <img src="docs/multi_macro.png" />
+</p>
+
